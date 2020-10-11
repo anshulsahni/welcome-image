@@ -6,6 +6,4 @@ COPY . /app
 
 RUN go build main.go
 
-ENV PORT
-
 ENTRYPOINT ["/app/main"]
