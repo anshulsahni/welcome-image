@@ -14,6 +14,7 @@ import (
 	"math"
 	"math/rand"
 	"net/http"
+	"os"
 
 	"github.com/nfnt/resize"
 
@@ -62,7 +63,8 @@ func main() {
 
 		context.DataFromReader(http.StatusOK, int64(len(buffer.Bytes())), "image/jpeg", buffer, map[string]string{})
 	})
-	server.Run()
+
+	server.Run(":" + os.Getenv("PORT"))
 }
 
 func fetchDisplayPicture(dpLink string) (imageReader io.Reader, contentType string) {
