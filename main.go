@@ -43,7 +43,7 @@ const smallFontSize = 7
 
 func main() {
 	server := gin.Default()
-	server.GET("/ping", func(context *gin.Context) {
+	server.GET("/image", func(context *gin.Context) {
 
 		provider, userID := getProviderAndUserID(context)
 
@@ -60,6 +60,10 @@ func main() {
 		buffer := new(bytes.Buffer)
 
 		jpeg.Encode(buffer, sampleImage, nil)
+
+		context.Header("cache-control", "private, no-cache, no-store, must-revalidate")
+		context.Header("expires", "0")
+		context.Header("pragma", "no-cache")
 
 		context.DataFromReader(http.StatusOK, int64(len(buffer.Bytes())), "image/jpeg", buffer, map[string]string{})
 	})

@@ -17,4 +17,4 @@ jobs:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: welcome-image
           usedocker: true
-          docker_heroku_proces_type: web
+          docker_heroku_process_type: web
